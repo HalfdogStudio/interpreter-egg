@@ -1,0 +1,28 @@
+{
+  "name": "interpreter-egg",
+  "version": "1.0.0",
+  "description": "a small interpreter for simple Egg language.",
+  "main": "egg.js",
+  "scripts": {
+    "test": "mocha --require should"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/HalfdogStudio/interpreter-egg.git"
+  },
+  "keywords": [
+    "interpreter",
+    "js",
+    "egg"
+  ],
+  "author": "Liu Yuyang (sa@linuxer.me)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HalfdogStudio/interpreter-egg/issues"
+  },
+  "homepage": "https://github.com/HalfdogStudio/interpreter-egg#readme",
+  "dependencies": {
+    "mocha": "^2.3.3",
+    "should": "^7.1.1"
+  }
+}
