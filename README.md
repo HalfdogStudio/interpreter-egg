@@ -1,7 +1,9 @@
 Egg
 ----
 
-[![Build Status](https://travis-ci.org/HalfdogStudio/interpreter-egg.png)](https://travis-ci.org/HalfdogStudio/interpreter-egg) [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/HalfdogStudio/interpreter-egg?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/HalfdogStudio/interpreter-egg](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/HalfdogStudio/interpreter-egg?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+[![Build Status](https://travis-ci.org/HalfdogStudio/interpreter-egg.png)](https://travis-ci.org/HalfdogStudio/interpreter-egg)
 
 A little language named Egg implemented above javascript.
 
