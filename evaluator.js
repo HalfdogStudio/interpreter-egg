@@ -1,3 +1,7 @@
+/*
+ * 求值器
+ * 内置关键字
+ */
 function evaluate(expr, env) {
   switch(expr.type) {
     case "value":
@@ -64,6 +68,35 @@ specialForms["define"] = function(args, env) {
   var value = evaluate(args[1], env);
   env[args[0].name] = value;
   return value;
+}
+
+specialForms["fun"] = function(args, env) {
+  if (args.length == 0) {
+    throw new SyntaxError("Functions need a body");
+  }
+
+  var argNames = args.slice(0, args.length - 1).map(name);
+  var body = args[args.length - 1];
+
+  return function() {
+    // FIXME: fix print(1,2,3,4) in top env
+    if(arguments.length != argNames.length) {
+      throw new TypeError("Wrong number of arguments");
+    }
+    var localEnv = Object.create(env);
+    for (var i = 0; i < argNames.length; i++) {
+      localEnv[argNames[i]] = arguments[i];
+    }
+    return evaluate(body, localEnv);
+  }
+  
+  function name(expr) {
+    if(expr.type != "word") {
+      throw new SyntaxError("Arg names must be words");
+    }
+    return expr.name;
+  }
+
 }
 
 exports.evaluate = evaluate;

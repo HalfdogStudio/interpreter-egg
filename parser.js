@@ -43,7 +43,7 @@ function parseApply(expr, program) {
     program = skipSpace(arg.rest);
     if (program.slice(0, 1) == ",") {
       program = skipSpace(program.slice(1));
-      // 这种情况只是`a(b, )`
+      // 这种情况只是`a(b, )`，我不想支持这种情况
       if (program.slice(0, 1) == ")") {
         throw new SyntaxError("Not valid Egg expression!")
       }
@@ -60,11 +60,11 @@ function parseApply(expr, program) {
   }
 }
 function skipSpace(s) {
-  var match = s.search(/\S/)
-  if (match !== -1) {
-    return s.slice(match);
+  var space = /^(\s|#.*)*/;
+  if (match = space.exec(s)) {
+    s = s.slice(match[0].length);
   }
-  return "";
+  return s;
 }
 
 function parse(program) {

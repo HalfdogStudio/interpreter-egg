@@ -23,7 +23,7 @@ do(define (total, 0),
 
 Support:
 
-  if while do define + - * / == < > true false
+    if while do define + - * / == < > true false fun
 
 
 How to work

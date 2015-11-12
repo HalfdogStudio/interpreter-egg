@@ -17,7 +17,8 @@ function run() {
     program += line;
     if (stack == 0) {
       try {
-        evaluate(parse(program.toString()), env);
+        console.log(program)
+        evaluate(parse(program), env);
       } catch (e) {
         console.log(e);
       }

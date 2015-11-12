@@ -1,3 +1,6 @@
+/*
+ * 环境和内置函数
+ */
 var topEnv = Object.create(null);
 
 topEnv['true'] = true;
@@ -8,9 +11,33 @@ topEnv['false'] = false;
 });
 
 // print函数
-topEnv["print"] = function(value) {
-  console.log(value);
-  return value;
+topEnv["print"] = function() {
+  console.log.apply(null, arguments);
+  return true;
+}
+
+topEnv["array"] = function() {
+  return [].slice.apply(arguments);
+}
+
+topEnv["length"] = function(array) {
+  if (!(array instanceof Array)) {
+    throw new TypeError("arg for length must be array");
+  }
+  return array.length;
+}
+// FIXME: 测试闭包特性
+//do(define(f, fun(a, fun(b, +(a, b)))),
+//   print(f(4)(5)))
+
+topEnv["element"] = function(array, n) {
+  if (!(array instanceof Array)) {
+    throw new TypeError("arg for element must be array");
+  }
+  if (!(n >= 0 && n <= array.length - 1)) {
+    throw new RangeError("out of range for array index");
+  }
+  return array[n];
 }
 
 module.exports = topEnv;
