@@ -1,7 +1,7 @@
 Egg
 ----
 
-[![Build Status](https://travis-ci.org/HalfdogStudio/interpreter-egg.png)](https://travis-ci.org/HalfdogStudio/interpreter-egg)
+[![Build Status](https://travis-ci.org/HalfdogStudio/interpreter-egg.png)](https://travis-ci.org/HalfdogStudio/interpreter-egg) [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/HalfdogStudio/interpreter-egg?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 A little language named Egg implemented above javascript.
 
