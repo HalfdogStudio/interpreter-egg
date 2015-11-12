@@ -2,7 +2,7 @@ var parser = require('../parser.js');
 
 describe("skipSpace", function() {
   it("should skip prefix spaces", function() {
-    parser.skipSpace("   a").should.equal('a');
+    parser.skipSpace("  # hehe\n a").should.equal('a');
   })
 });
 
@@ -81,3 +81,8 @@ describe("parse", function() {
     parser.parse("+(a,b)").should.eql(value);
   })
 })
+
+// FIXME: 测试闭包特性
+//do(define(f, fun(a, fun(b, +(a, b)))),
+//   print(f(4)(5)))
+

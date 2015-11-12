@@ -70,6 +70,21 @@ specialForms["define"] = function(args, env) {
   return value;
 }
 
+specialForms["set"] = function(args, env) {
+  var curEnv;
+  if (args.length !== 2 || args[0].type != "word") {
+    throw new SyntaxError("Bad use of set");
+  }
+  var value = evaluate(args[1], env);
+  while (env = Object.getPrototypeOf(env)) {
+    if (Object.prototype.hasOwnProperty.call(env, args[0].name)) {
+        env[args[0].name] = value;
+        return value;
+    }
+  }
+  throw ReferenceError("Not find " + args[0].name);
+}
+
 specialForms["fun"] = function(args, env) {
   if (args.length == 0) {
     throw new SyntaxError("Functions need a body");
@@ -79,7 +94,6 @@ specialForms["fun"] = function(args, env) {
   var body = args[args.length - 1];
 
   return function() {
-    // FIXME: fix print(1,2,3,4) in top env
     if(arguments.length != argNames.length) {
       throw new TypeError("Wrong number of arguments");
     }

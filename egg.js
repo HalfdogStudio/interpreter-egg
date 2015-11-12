@@ -1,35 +1,21 @@
 var topEnv = require('./env.js');
 var process = require('process');
+var readline = require('readline');
 var parse = require('./parser.js').parse;
 var evaluate = require('./evaluator.js').evaluate;
 
+var rl = readline.createInterface(process.stdin, process.stdout);
+
 function run() {
   var env = Object.create(topEnv);
-  process.stdin.resume();
-  process.stdout.write(">>> ");
+  rl.prompt("> ")
   var program = ""
   var stack = 0;
   var inString = false;
-  process.stdin.on('data', function(data) {
-    var line = data.toString();
-    var index;
-    struct(line.slice(0,1), line.slice(1));
-    program += line;
-    if (stack == 0) {
-      try {
-        console.log(program)
-        evaluate(parse(program), env);
-      } catch (e) {
-        console.log(e);
-      }
-      program = "";
-    } 
-    process.stdout.write(">>> " + '...'.repeat(stack));
-    function struct(c, r) {
-      if (r == "") {
-        return "";
-      }
-      switch (c){
+  rl.on('line', function(line) {
+    // 检查状态
+    for (var i = 0; i < line.length; i++) {
+      switch (line[i]){
         case '"':
           inString = !inString;
           break;
@@ -46,8 +32,23 @@ function run() {
           stack--;
           break
       }
-      struct(r.slice(0, 1), r.slice(1))
     }
+    // 用readline获取的换行符没了。。。换成readline
+    line = line + '\n';
+    // 搜集程序文本
+    program += line;
+    if (stack <= 0) {
+      try {
+        console.log(program)
+        evaluate(parse(program), env);
+      } catch (e) {
+        console.log(e);
+      }
+      program = "";
+      stack = 0;
+    } 
+    rl.setPrompt("> " + "..".repeat(stack));
+    rl.prompt();
   });
 
   process.stdin.on("end", function() {
