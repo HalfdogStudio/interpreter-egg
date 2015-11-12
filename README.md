@@ -1,6 +1,8 @@
 Egg
 ----
 
+[![Build Status](https://travis-ci.org/HalfdogStudio/interpreter-egg.png)](https://travis-ci.org/HalfdogStudio/interpreter-egg)
+
 A little language named Egg implemented above javascript.
 
 It's simple. But support function closures, high-order functions and so on. And it could include nearly any logic you could imagine.
@@ -22,6 +24,12 @@ do(define (total, 0),
             define(count, +(count, 1)))),
    print(total))
 ```
+
+### Comment
+
+`#` used for comment
+
+    +(1, 2) # plus 1 and 2
 
 ### do 
 

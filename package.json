@@ -4,7 +4,7 @@
   "description": "a small interpreter for simple Egg language.",
   "main": "egg.js",
   "scripts": {
-    "test": "mocha --require should"
+    "test": "./node_modules/mocha/bin/mocha --require should"
   },
   "repository": {
     "type": "git",
