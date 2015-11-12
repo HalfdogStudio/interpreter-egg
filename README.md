@@ -1,7 +1,7 @@
 Egg
 ----
 
-A little language implemention on javascript.
+A little language named Egg implemented above javascript.
 
 Just for fun, origin from my favorite [Eloquent Javascript](http://eloquentjavascript.net/11_language.html)。
 
@@ -29,18 +29,20 @@ Support:
 How to work
 ==========
 
-Run `egg.js`，<kbd>Ctrl-D</kbd> to finish input:
+Run `egg.js`，just input your code line by line. <kbd>Ctrl-D</kbd> to exit:
 
 ```bash
-┌─[reverland@reverland-R478-R429] - [~/tmp/eloquentjs] - [2015-11-12 12:27:18]
-└─[130] <> node egg.js
-do(define (total, 0), 
-   define (count, 1),
-   while(<(count, 11),
-         do(define(total, +(total, count)),
-            define(count, +(count, 1)))),
-   print(total))
-
-output:
+┌─[reverland@reverland-R478-R429] - [~/tmp/eloquentjs] - [2015-11-12 11:23:19]
+└─[0] <git:(master 920fc9a✱) > node egg.js
+>>> print(1)
+1
+>>> do(define (total, 0),
+>>> ...define (count, 1),
+>>> ...while(<(count, 11),
+>>> ......do(define(total, +(total, count)),
+>>> .........define(count, +(count, 1)))),
+>>> ...print(total))
 55
+>>> 
+bye~
 ```
