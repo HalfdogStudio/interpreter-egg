@@ -26,9 +26,6 @@ topEnv["length"] = function(array) {
   }
   return array.length;
 }
-// FIXME: 测试闭包特性
-//do(define(f, fun(a, fun(b, +(a, b)))),
-//   print(f(4)(5)))
 
 topEnv["element"] = function(array, n) {
   if (!(array instanceof Array)) {
@@ -39,5 +36,6 @@ topEnv["element"] = function(array, n) {
   }
   return array[n];
 }
+
 
 module.exports = topEnv;
