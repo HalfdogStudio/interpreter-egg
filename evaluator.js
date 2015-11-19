@@ -64,7 +64,7 @@ specialForms["do"] = function(args, env) {
 specialForms["define"] = function(args, env) {
   if (args.length != 2 || args[0].type != "word") {
     throw new SyntaxError("Bad use of define");
-  } 
+  }
   var value = evaluate(args[1], env);
   env[args[0].name] = value;
   return value;
@@ -103,7 +103,7 @@ specialForms["fun"] = function(args, env) {
     }
     return evaluate(body, localEnv);
   }
-  
+
   function name(expr) {
     if(expr.type != "word") {
       throw new SyntaxError("Arg names must be words");
@@ -114,3 +114,4 @@ specialForms["fun"] = function(args, env) {
 }
 
 exports.evaluate = evaluate;
+exports.specialForms = specialForms;

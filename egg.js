@@ -3,11 +3,18 @@ var process = require('process');
 var readline = require('readline');
 var parse = require('./parser.js').parse;
 var evaluate = require('./evaluator.js').evaluate;
+var specialForms = require('./evaluator.js').specialForms;
+var __version__ = 0.3;
 
-var rl = readline.createInterface(process.stdin, process.stdout);
 
 function run() {
+  // env
   var env = Object.create(topEnv);
+  env["version"] = function() {
+    console.log(__version__);
+  };
+  // rl interface
+  var rl = readline.createInterface(process.stdin, process.stdout, completer);
   rl.prompt("> ");
   var program = "";
   var stack = 0;
@@ -15,7 +22,7 @@ function run() {
   rl.on('line', function(line) {
     // 检查状态
     for (var i = 0; i < line.length; i++) {
-      switch (line[i]){
+      switch (line[i]) {
         case '"':
           inString = !inString;
           break;
@@ -54,6 +61,30 @@ function run() {
   process.stdin.on("end", function() {
     console.log("\nbye~")
   })
+
+  function completer(line) {
+    //console.log(allProperties(env));
+    var word = line.split(/[\s(),"]+/).slice(-1)[0];
+    // 用于拼接在匹配部分之前
+    line = line.slice(-word.length);
+    //console.log(line);
+    //console.log(word);
+    var hits = Object.keys(specialForms).concat(allProperties(env)).filter(function(key) {
+      return key.indexOf(word) == 0;
+    })
+    return [hits, line];
+  }
+}
+
+function allProperties(o) {
+  //console.log(Object.getPrototypeOf(o));
+  var keys = Object.keys(o);
+  var proto = o;
+  while (proto = Object.getPrototypeOf(proto)) {
+    keys = keys.concat(Object.keys(proto));
+    // console.log(keys);
+  }
+  return keys;
 }
 
 run()
