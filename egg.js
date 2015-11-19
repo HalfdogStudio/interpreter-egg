@@ -8,8 +8,8 @@ var rl = readline.createInterface(process.stdin, process.stdout);
 
 function run() {
   var env = Object.create(topEnv);
-  rl.prompt("> ")
-  var program = ""
+  rl.prompt("> ");
+  var program = "";
   var stack = 0;
   var inString = false;
   rl.on('line', function(line) {
@@ -39,14 +39,14 @@ function run() {
     program += line;
     if (stack <= 0) {
       try {
-        console.log(program)
+        //console.log(program)
         evaluate(parse(program), env);
       } catch (e) {
         console.log(e);
       }
       program = "";
       stack = 0;
-    } 
+    }
     rl.setPrompt("> " + "..".repeat(stack));
     rl.prompt();
   });
