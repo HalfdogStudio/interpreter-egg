@@ -11,7 +11,7 @@ It's simple. But support function closures, high-order functions and so on. And 
 
 Just for fun, origin from my favorite [Eloquent Javascript](http://eloquentjavascript.net/11_language.html)。
 
-All just for fun. 
+All just for fun.
 
 Syntax
 ======
@@ -19,7 +19,7 @@ Syntax
 All is expressions. Valid expression are string/number/word/application.
 
 ```javascript
-do(define (total, 0), 
+do(define (total, 0),     # Hey Egg!
    define (count, 1),
    while(<(count, 11),
          do(define(total, +(total, count)),
@@ -33,7 +33,7 @@ do(define (total, 0),
 
     +(1, 2) # plus 1 and 2
 
-### do 
+### do
 
 Run multiple expressions one by one. Return the last expression.
 
@@ -59,13 +59,13 @@ A name represent variables like values, function, nearly everything.
     print
 
 
-### if 
+### if
 
 Return different value depending on conditions;
 
     if(condition_expression, true_expression, false_expression)
 
-### while 
+### while
 
 Just like `while` in other languages. Return false.
 
@@ -83,7 +83,7 @@ Set variables out of current scope, if there isn't exist, throw ReferenceError. 
 
     set(word, expression)
 
-### + - * / == < > 
+### + - * / == < >
 
 Just as you see in other languages. These calculations are supported.
 
@@ -97,6 +97,13 @@ define a function. the last arguments will be the function body, all other argum
     do(define(add, fun(a, b, +(a, b))),
        print(add(1, 2)))
 
+### Comment
+
+A comment is started with `#` in a line.
+
+    print(1) # a comment
+
+
 REPL
 ==========
 
@@ -105,7 +112,7 @@ Run `egg.js`，just input your code line by line. <kbd>Ctrl-D</kbd> or <kbd>Ctrl
 ```bash
 ┌─[reverland@reverland-R478-R429] - [~/tmp/eloquentjs] - [2015-11-12 03:16:54]
 └─[0] <git:(master 976b113✱✈) > node egg.js
-> do(define (total, 0), 
+> do(define (total, 0),
 > ..define (count, 1),
 > ..while(<(count, 11),
 > ....do(define(total, +(total, count)),
